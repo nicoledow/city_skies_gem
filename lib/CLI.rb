@@ -1,3 +1,5 @@
+require 'pry'
+
 class CLI
 
   def begin
@@ -6,6 +8,7 @@ class CLI
     zipcode = gets.strip
     zipcode
   end
+
 
 
 
