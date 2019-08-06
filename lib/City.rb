@@ -19,9 +19,3 @@ class City
 
 
 end
-
-# City.new(Scraper.scrape_weather("85259"), Scraper.scrape_astronomy("85259"))
-weather = Scraper.scrape_weather("85259")
-astronomy = Scraper.scrape_astronomy("85259")
-scottsdale = City.new(weather, astronomy)
-scottsdale.get_planet_info
