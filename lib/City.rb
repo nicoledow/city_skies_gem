@@ -5,6 +5,10 @@ class City
     @zipcode = zipcode
   end
 
+  def self.new_from_scrape(url)
+
+  end
+
 
 
 
