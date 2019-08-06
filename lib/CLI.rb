@@ -15,11 +15,11 @@ class CLI
     puts "3. Current moon phase"
     puts "4. Sunrise and sunset times"
     puts "5. Moonrise and moonset times"
-    #puts "6. All yearly meteor showers"
   end
 
 
-
+#when city is chosen, need to run Scraper.scrape_city_page(zipcode)
+#then need to run City.new_from_scrape based on that scrape
     def run
       puts "Hello! Welcome to the CitySkies gem."
       get_zipcode
@@ -28,7 +28,7 @@ class CLI
 
       case input
       when "1"
-        
+
       when "2"
 
       when "3"
