@@ -23,11 +23,16 @@ class Scraper
     #selector to scrape descriptions of planet_visibility:
     astronomy_info.css("p.rise_graph-desc")
 
+    descriptions = []
+    astronomy_info.css("p.rise_graph-desc").each do |description|
+      descriptions << description.text
+    end
 
-
-
-
+    planet_visibility = {Mercury: descriptions[0], Venus: descriptions[1], Mars: descriptions[2], Jupiter: descriptions[3], Saturn: descriptions[4], Uranus: descriptions[5], Neptune: descriptions[6]}
+binding.pry
   end
+
+
 
 
 
