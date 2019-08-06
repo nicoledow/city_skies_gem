@@ -43,6 +43,8 @@ class CLI
 
    def see_more?(zipcode)
      city = City.all.detect {|city| city.zipcode == zipcode}
+     puts "Tomorrow, the weather will be #{city.weather_tomorrow}."
+     #scrape more data to return here!!!
    end
 
   #scrape data using zipcode as argument

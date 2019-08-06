@@ -13,8 +13,9 @@ class Scraper
     current_temp = weather_info.css("#bk-focus .fixed #qlook .h2").text
     weather_description = weather_info.css("#bk-focus .fixed #qlook p").first.text
     weather_tomorrow = weather_info.css("#wt-48 tbody .c1 td")[3].text
+
     city_hash = {name: name, zipcode: zipcode, current_temp: current_temp, weather_description: weather_description, weather_tomorrow: weather_tomorrow}
-    #binding.pry
+    binding.pry
     city_hash
   end
 
