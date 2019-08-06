@@ -1,4 +1,6 @@
 require 'pry'
+require 'nokogiri'
+require 'open-uri'
 
 class Scraper
 
@@ -14,3 +16,5 @@ class Scraper
 
 
 end
+
+Scraper.new.scrape_weather(85259)
