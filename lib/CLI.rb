@@ -1,4 +1,6 @@
 require 'pry'
+require_relative './Scraper.rb'
+require_relative './City.rb'
 
 class CLI
   @@zipcode = ""
@@ -25,7 +27,25 @@ class CLI
     city_astronomical_data = Scraper.scrape_astronomy(zipcode)
     city = City.new(city_weather, city_astronomical_data)
 
+    puts "What would you like to know about #{city.name}? Type a number from 1-5."
+    puts "1. See current weather."
+    puts "2. See celestial data."
+    puts "3. Exit the program."
 
+    response = gets.to_i
+
+    case response
+    when 1
+      puts city.current_temp
+      puts city.weather_description
+      see_more?
+    when 2
+      see_celestial_data
+    when 3
+      puts "Goodbye!"
+    else
+      puts "Please enter a valid command."
+    end
 
 
   end
@@ -46,4 +66,4 @@ class CLI
 
 
 end
-CLI.get_zipcode
+CLI.new.run
