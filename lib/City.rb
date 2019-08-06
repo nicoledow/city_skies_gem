@@ -6,8 +6,9 @@ class City
     @zipcode = zipcode
   end
 
-  def self.new_from_scrape(url)
-
+  def self.new_from_scrape(weather_hash, astronomy_hash)
+    #need scraper to execute scrape and return these 2 hashes
+    #use self.send to add these as attributes to object 
   end
 
 
