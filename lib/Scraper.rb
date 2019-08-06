@@ -29,12 +29,4 @@ class Scraper
 
   end
 
-
-
-
-
-
-
-
-
 end
