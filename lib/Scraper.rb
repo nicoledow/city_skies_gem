@@ -20,13 +20,12 @@ class Scraper
     astronomy_info = Nokogiri::HTML(open("https://www.timeanddate.com/astronomy/night/@z-us-#{zipcode}"))
     #binding.pry
 
-    planet_visibility = {}
-    # astronomy_info.css(".c0 th").each do |planet1|
-    #   astronomy_info.css(".c1 th").each do |planet2|
-    #     puts planet1.text
-    #     puts planet2.text
-    #   end
-    # end
+    #selector to scrape descriptions of planet_visibility:
+    astronomy_info.css("p.rise_graph-desc")
+
+
+
+
 
   end
 
