@@ -4,7 +4,7 @@ require 'open-uri'
 
 class Scraper
 
-#currently doesn't scrape zipcodes starting with 0+digit greater than 7
+#creates and returns a hash containing city name, zipcode, current temperature, and brief weather description
   def self.scrape_weather(zipcode)
     zipcode = zipcode.to_s
     weather_info = Nokogiri::HTML(open("https://www.timeanddate.com/weather/@z-us-#{zipcode}"))
@@ -15,6 +15,7 @@ class Scraper
     city_hash
   end
 
+#gets and returns a hash with planets as keys, describing their visibility tonight
   def self.scrape_astronomy(zipcode)
     zipcode = zipcode.to_s
     astronomy_info = Nokogiri::HTML(open("https://www.timeanddate.com/astronomy/night/@z-us-#{zipcode}"))
@@ -29,7 +30,7 @@ class Scraper
     end
 
     planet_visibility = {Mercury: descriptions[0], Venus: descriptions[1], Mars: descriptions[2], Jupiter: descriptions[3], Saturn: descriptions[4], Uranus: descriptions[5], Neptune: descriptions[6]}
-binding.pry
+
   end
 
 
