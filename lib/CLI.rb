@@ -42,8 +42,7 @@ class CLI
    end
 
    def see_more?(zipcode)
-     city = City.all.select {|city| city.zipcode == zipcode}
-     binding.pry
+     city = City.all.detect {|city| city.zipcode == zipcode}
    end
 
   #scrape data using zipcode as argument
