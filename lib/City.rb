@@ -4,7 +4,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class City
-  attr_accessor :zipcode, :name, :current_temp, :weather_description, :Mercury, :Venus, :Mars, :Jupiter, :Saturn, :Uranus, :Neptune
+  attr_accessor :zipcode, :name, :current_temp, :weather_description, :weather_tomorrow :Mercury, :Venus, :Mars, :Jupiter, :Saturn, :Uranus, :Neptune
 
   @@all = []
 
