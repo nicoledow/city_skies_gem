@@ -30,7 +30,8 @@ class CLI
     puts "3. Current moon phase"
     puts "4. Sunrise and sunset times"
     puts "5. Moonrise and moonset times"
-    puts "6. Exit this program"
+    puts "6. Choose a new city"
+    puts "7. Exit this program"
     input = gets.strip
     input
   end
