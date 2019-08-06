@@ -18,7 +18,7 @@ class CLI
 #should this trigger a City.new_from_scrape ?
   def get_zipcode
     puts "Please enter a 5-digit U.S. zip code to see weather or celestial information. "
-    zipcode = gets.strip
+    zipcode = gets.strip.to_s
     zipcode
   end
 
