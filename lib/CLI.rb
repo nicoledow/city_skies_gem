@@ -11,13 +11,6 @@ class CLI
     run
   end
 
-  #ask for user to input zipcode
-  # def get_zipcode
-  #   puts "Please enter a 5-digit U.S. zip code to see information on that city."
-  #   zipcode = gets.strip.to_s
-  #   zipcode
-  # end
-
   def run
     puts "Please enter a 5-digit U.S. zip code to see information on that city."
     zipcode = gets.strip.to_s
