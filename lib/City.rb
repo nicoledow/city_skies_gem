@@ -1,5 +1,6 @@
 class City
   attr_accessor :zipcode
+  @@all = []
 
   def initialize(zipcode)
     @zipcode = zipcode
@@ -12,5 +13,9 @@ class City
 
 
 
+
+  def self.all
+    @@all
+  end
 
 end
