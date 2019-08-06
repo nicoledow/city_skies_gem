@@ -26,7 +26,7 @@ class CLI
   def menu
     puts "What would you like to know about your city? Please enter a number 1-6."
     puts "1. Current weather"
-    puts "2. Visible planets for tonight"
+    puts "2. Planet visibility for tonight"
     puts "3. Current moon phase"
     puts "4. Sunrise and sunset times"
     puts "5. Moonrise and moonset times"
