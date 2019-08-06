@@ -24,11 +24,11 @@ class CLI
       puts "Hello! Welcome to the CitySkies gem."
       get_zipcode
       menu
-      input = gets.strip
+      input = gets.strip.downcase
 
       case input
       when "1"
-
+        
       when "2"
 
       when "3"
