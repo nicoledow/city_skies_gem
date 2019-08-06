@@ -1,3 +1,4 @@
 require_relative "./city_skies/version"
+require_relative "./CLI"
 
-puts "Hello! Welcome to the CitySkies gem."
+CLI.new.begin
