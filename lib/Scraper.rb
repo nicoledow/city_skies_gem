@@ -38,5 +38,3 @@ class Scraper
 
 
 end
-
-Scraper.scrape_astronomy("85259")
