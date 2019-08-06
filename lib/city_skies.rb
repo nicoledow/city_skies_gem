@@ -1,6 +1,3 @@
-require "city_skies/version"
+require_relative "./city_skies/version"
 
-module CitySkies
-  class Error < StandardError; end
-  # Your code goes here...
-end
+puts "Hello! Welcome to the CitySkies gem."
