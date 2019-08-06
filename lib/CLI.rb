@@ -6,7 +6,7 @@ class CLI
   @@zipcode = ""
 
   #start method that welcomes user
-  def self.start
+  def start
     puts "Hi! Welcome to the CitySkies gem."
     run
   end
@@ -25,9 +25,9 @@ class CLI
 
     city_weather = Scraper.scrape_weather(zipcode)
     city_astronomical_data = Scraper.scrape_astronomy(zipcode)
-    city = City.new(city_weather, city_astronomical_data)
+    new_city = City.new(city_weather, city_astronomical_data)
 
-    puts "What would you like to know about #{city.name}? Type a number from 1-5."
+    puts "What would you like to know about #{new_city.name}? Type a number from 1-5."
     puts "1. See current weather."
     puts "2. See celestial data."
     puts "3. Exit the program."
@@ -36,19 +36,22 @@ class CLI
 
     case response
     when 1
-      puts city.current_temp
-      puts city.weather_description
-      see_more?
+      puts new_city.current_temp
+      puts new_city.weather_description
+      see_more?(zipcode)
     when 2
-      see_celestial_data
+      see_celestial_data(zipcode)
     when 3
       puts "Goodbye!"
     else
       puts "Please enter a valid command."
     end
+   end
 
-
-  end
+   def see_more?(zipcode)
+     city = City.all.select {|city| city.zipcode == zipcode}
+     binding.pry
+   end
 
   #scrape data using zipcode as argument
   #instantiate a new City object using scraped data
@@ -66,4 +69,4 @@ class CLI
 
 
 end
-CLI.new.run
+CLI.new.start
