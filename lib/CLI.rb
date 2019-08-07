@@ -60,7 +60,7 @@ class CLI
           puts "Please enter a valid command."
         end
     when 2
-      see_celestial_data(zipcode)
+      see_celestial_data(new_city)
     when 3
       return Goodbye!
     else
@@ -78,11 +78,20 @@ class CLI
      run(zipcode)
    end
 
+   def see_celestial_data(city)
+     puts "What celestial data would you like to see? Enter 1-3 or 'exit.'"
+     puts "1. Today's daylight hours"
+     puts "2. Today's moon brightness and moon phase"
+     puts "3. Today's planet visibility"
+     response = gets.strip.to_s
 
+     case response
+     when "1"
+   end
 
- def find_by_zipcode(zipcode)
-   City.all.find {|city| city.zipcode == zipcode}
- end
+   def find_by_zipcode(zipcode)
+     City.all.find {|city| city.zipcode == zipcode}
+   end
 
 
 end
