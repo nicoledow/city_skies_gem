@@ -26,15 +26,5 @@ class City
   def self.all
     @@all
   end
-  weather = Scraper.scrape_weather("85259")
-  astronomy = Scraper.scrape_astronomy("85259")
-  sun_moon = Scraper.scrape_sun_and_moon("85259")
-  bradford = City.new(weather, astronomy, sun_moon)
-binding.pry
 
 end
-
-# weather = Scraper.scrape_weather("85259")
-# astronomy = Scraper.scrape_astronomy("85259")
-# sun_moon = Scraper.scrape_sun_and_moon("85259")
-# bradford = City.new(weather, astronomy, sun_moon)
