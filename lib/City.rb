@@ -4,7 +4,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class City
-  attr_accessor :zipcode, :name, :current_temp, :weather_description, :weather_tomorrow, :humidity, :Mercury, :Venus, :Mars, :Jupiter, :Saturn, :Uranus, :Neptune, :daylight, :moon_brightness, :moon_phase
+  attr_accessor :zipcode, :name, :current_temp, :weather_description, :weather_tomorrow, :humidity, :Mercury, :Venus, :Mars, :Jupiter, :Saturn, :Uranus, :Neptune, :daylight, :moon_brightness, :moon_phase, :planet_visibility
 
   @@all = []
 
@@ -20,11 +20,14 @@ class City
     sun_and_moon_hash.each do |k, v|
       self.send("#{k}=", v)
     end
+    @planet_visibility = astronomy_hash
     @@all << self
   end
 
   def self.all
     @@all
   end
+
+
 
 end
