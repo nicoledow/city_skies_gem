@@ -3,9 +3,7 @@ require_relative './Scraper.rb'
 require_relative './City.rb'
 
 class CLI
-  @@zipcode = ""
 
-  #start method that welcomes user
   def start
     puts "Hi! Welcome to the CitySkies gem."
     get_zipcode
@@ -14,7 +12,6 @@ class CLI
   def get_zipcode
     puts "Please enter a 5-digit U.S. zip code to see information on that city."
     zipcode = gets.strip.to_s
-    @@zipcode = zipcode
 
     city_weather = Scraper.scrape_weather(zipcode)
     city_astronomical_data = Scraper.scrape_astronomy(zipcode)
@@ -71,18 +68,6 @@ class CLI
      #scrape more data to return here!!!
    end
 
-  #scrape data using zipcode as argument
-  #instantiate a new City object using scraped data
-
-  #provide menu of options
-    #see current weather
-      #would you like to see additional weather details?
-    #see astronomical data
-      #sunrise/sunset
-      #moonrise/moonset
-      #visible planets tonight
-    #exit the program
-      #print goodbye message
   def return_to_menu(zipcode)
     city = find_by_zipcode(zipcode)
     binding.pry
@@ -99,4 +84,3 @@ class CLI
 
 
 end
-CLI.new.start
