@@ -49,4 +49,3 @@ class Scraper
   end
 
 end
-Scraper.scrape_sun_and_moon("85259")
