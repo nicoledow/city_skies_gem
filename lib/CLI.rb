@@ -84,7 +84,8 @@ class CLI
     #exit the program
       #print goodbye message
   def return_to_menu(zipcode)
-    city = City.all.find {|city| city.zipcode == zipcode}
+    city = find_by_zipcode(zipcode)
+    binding.pry
     puts "What would you like to know about #{city.name}? Type a number from 1-3."
     puts "1. See current weather."
     puts "2. See celestial data."
@@ -92,9 +93,6 @@ class CLI
 
   end
 
-  #refactoring: should I separate out a get_zipcode method that gets input and scrapes
-    #then separate run method
-    #run method can be recalled for return_to_menu method
  def find_by_zipcode(zipcode)
    City.all.find {|city| city.zipcode == zipcode}
  end
