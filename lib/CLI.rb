@@ -18,7 +18,8 @@ class CLI
 
     city_weather = Scraper.scrape_weather(zipcode)
     city_astronomical_data = Scraper.scrape_astronomy(zipcode)
-    new_city = City.new(city_weather, city_astronomical_data)
+    city_sun_moon_data = Scraper.scrape_sun_and_moon(zipcode)
+    new_city = City.new(city_weather, city_astronomical_data, city_sun_moon_data)
     run(zipcode)
   end
 
