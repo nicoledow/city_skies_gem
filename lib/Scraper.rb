@@ -36,11 +36,11 @@ class Scraper
 
   def self.scrape_sun_and_moon(zipcode)
     zipcode = zipcode.to_s
-    data = Nokogiri::HTML(open("https://www.timeanddate.com/astronomy/@z-us-#{zipcode}"))
-    sunrise = data.css("#bk-focus .fixed #qfacts p .three").first.text
+    sun_data = Nokogiri::HTML(open("https://www.timeanddate.com/sun/@z-us-#{zipcode}"))
+    daylight = sun_data.css("#bk-focus .fixed #qlook p.dn-mob").text.gsub("pm1", "pm: 1")
     binding.pry
 
-    sun_and_moon_hash = {sunrise: sunrise}
+    sun_and_moon_hash = {daylight: daylight}
 
   end
 
