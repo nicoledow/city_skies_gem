@@ -50,8 +50,7 @@ class CLI
         if input == 'y'
           see_more?(zipcode)
         elsif input == 'menu'
-          #a method that runs a menu without asking for input again
-          return_to_menu(zipcode)
+          run(zipcode)
         elsif input == 'new'
           start
         elsif input == 'exit'
@@ -97,6 +96,7 @@ class CLI
        run(city.zipcode)
      when "3"
        city.planet_visibility.each {|planet, visibility| puts "#{planet}: #{visibility}"}
+       run(city.zipcode)
      when "exit"
        return Goodbye!
      end
