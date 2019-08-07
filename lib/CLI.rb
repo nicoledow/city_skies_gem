@@ -2,6 +2,8 @@ require 'pry'
 require_relative './Scraper.rb'
 require_relative './City.rb'
 
+#doesn't work when Scraper file isn't required - issue with file requirements?
+
 class CLI
 
   def start
