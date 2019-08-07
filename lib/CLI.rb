@@ -8,10 +8,10 @@ class CLI
   #start method that welcomes user
   def start
     puts "Hi! Welcome to the CitySkies gem."
-    run
+    get_zipcode
   end
 
-  def run
+  def get_zipcode
     puts "Please enter a 5-digit U.S. zip code to see information on that city."
     zipcode = gets.strip.to_s
     @@zipcode = zipcode
@@ -19,7 +19,10 @@ class CLI
     city_weather = Scraper.scrape_weather(zipcode)
     city_astronomical_data = Scraper.scrape_astronomy(zipcode)
     new_city = City.new(city_weather, city_astronomical_data)
+    run(zipcode)
+  end
 
+  def run(zipcode)
     puts "What would you like to know about #{new_city.name}? Type a number from 1-3."
     puts "1. See current weather."
     puts "2. See celestial data."
@@ -88,7 +91,9 @@ class CLI
   #refactoring: should I separate out a get_zipcode method that gets input and scrapes
     #then separate run method
     #run method can be recalled for return_to_menu method
-
+ def find_by_zipcode(zipcode)
+   City.all.find {|city| city.zipcode == zipcode}
+ end
 
 
 end
