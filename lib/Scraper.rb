@@ -12,10 +12,11 @@ class Scraper
     name = weather_info.css("head title").text.split(" ")[2].gsub(",", "")
     current_temp = weather_info.css("#bk-focus .fixed #qlook .h2").text
     weather_description = weather_info.css("#bk-focus .fixed #qlook p").first.text
-    weather_tomorrow = weather_info.css("#wt-48 tbody .c1 td")[3].text
-
-    city_hash = {name: name, zipcode: zipcode, current_temp: current_temp, weather_description: weather_description, weather_tomorrow: weather_tomorrow}
     #binding.pry
+    weather_tomorrow = weather_info.css("#wt-48 tbody .c1 td")[3].text
+    humidity = weather_info.css("#qfacts p")[5].text
+
+    city_hash = {name: name, zipcode: zipcode, current_temp: current_temp, weather_description: weather_description, weather_tomorrow: weather_tomorrow, humidity: humidity}
     city_hash
   end
 
