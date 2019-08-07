@@ -31,7 +31,16 @@ class CLI
     when 1
       puts new_city.current_temp
       puts new_city.weather_description
-      see_more?(zipcode)
+      puts "Would you like to see more weather information? Enter a command:"
+      puts "Type 'y' to see more weather information."
+      puts "Type 'menu' to return to a list of options."
+      puts "Type 'new' to check information on a new city."
+      puts "Type 'exit' to exit the program."
+      input = gets.strip.downcase
+        if input == 'y'
+          see_more?(zipcode)
+        elsif input == 'n'
+
     when 2
       see_celestial_data(zipcode)
     when 3
