@@ -20,7 +20,7 @@ class CLI
     city_astronomical_data = Scraper.scrape_astronomy(zipcode)
     new_city = City.new(city_weather, city_astronomical_data)
 
-    puts "What would you like to know about #{new_city.name}? Type a number from 1-5."
+    puts "What would you like to know about #{new_city.name}? Type a number from 1-3."
     puts "1. See current weather."
     puts "2. See celestial data."
     puts "3. Exit the program."
@@ -78,9 +78,16 @@ class CLI
       #print goodbye message
   def return_to_menu(zipcode)
     city = City.all.find {|city| city.zipcode == zipcode}
-    puts "What would you like to know about #{city.name}?"
-binding.pry
+    puts "What would you like to know about #{city.name}? Type a number from 1-3."
+    puts "1. See current weather."
+    puts "2. See celestial data."
+    puts "3. Exit the program."
+
   end
+
+  #refactoring: should I separate out a get_zipcode method that gets input and scrapes
+    #then separate run method
+    #run method can be recalled for return_to_menu method
 
 
 
