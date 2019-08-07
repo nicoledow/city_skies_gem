@@ -23,6 +23,4 @@ class City
     @@all
   end
 
-
-
 end
