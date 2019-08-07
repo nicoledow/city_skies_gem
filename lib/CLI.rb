@@ -39,8 +39,16 @@ class CLI
       input = gets.strip.downcase
         if input == 'y'
           see_more?(zipcode)
-        elsif input == 'n'
-
+        elsif input == 'menu'
+          #a method that runs a menu without asking for input again
+          return_to_menu(zipcode)
+        elsif input == 'new'
+          start
+        elsif input == 'exit'
+          puts "Goodbye!"
+        else
+          puts "Please enter a valid command."
+        end
     when 2
       see_celestial_data(zipcode)
     when 3
@@ -68,6 +76,11 @@ class CLI
       #visible planets tonight
     #exit the program
       #print goodbye message
+  def return_to_menu(zipcode)
+    city = City.all.find {|city| city.zipcode == zipcode}
+    puts "What would you like to know about #{city.name}?"
+binding.pry
+  end
 
 
 
