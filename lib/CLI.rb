@@ -83,16 +83,22 @@ class CLI
      puts "1. Today's daylight hours"
      puts "2. Today's moon brightness and moon phase"
      puts "3. Today's planet visibility"
-     response = gets.strip.to_s
+     response = gets.strip.to_s.downcase
 
      case response
      when "1"
        puts city.daylight
+       sleep(5)
+       run(city.zipcode)
      when "2"
-       puts "Today, the moon's illumination is at #{moon_brightness}."
+       puts "Today, the moon's illumination is at #{city.moon_brightness}."
        puts "The moon's current phase is: #{city.moon_phase}."
+       sleep(5)
+       run(city.zipcode)
      when "3"
        city.planet_visibility.each {|planet, visibility| puts "#{planet}: #{visibility}"}
+     when "exit"
+       return Goodbye!
      end
    end
 
