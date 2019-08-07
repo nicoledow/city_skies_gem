@@ -48,7 +48,7 @@ class CLI
       puts "Type 'menu' to return to a list of options."
       puts "Type 'new' to check information on a new city."
       puts "Type 'exit' to exit the program."
-      input = gets.strip.downcase
+      input = gets.strip.to_s.downcase
         if input == 'y'
           see_more?(zipcode)
         elsif input == 'menu'
