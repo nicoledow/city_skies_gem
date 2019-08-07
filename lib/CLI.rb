@@ -9,9 +9,15 @@ class CLI
     get_zipcode
   end
 
+
   def get_zipcode
     puts "Please enter a 5-digit U.S. zip code to see information on that city."
     zipcode = gets.strip.to_s
+
+    if zipcode.length != 5
+      puts "Please enter a valid zipcode."
+      zipcode = gets.strip.to_s
+    end
 
     city_weather = Scraper.scrape_weather(zipcode)
     city_astronomical_data = Scraper.scrape_astronomy(zipcode)
@@ -19,6 +25,7 @@ class CLI
     new_city = City.new(city_weather, city_astronomical_data, city_sun_moon_data)
     run(zipcode)
   end
+
 
   def run(zipcode)
     new_city = find_by_zipcode(zipcode)
@@ -61,22 +68,26 @@ class CLI
     end
    end
 
+
+
    def see_more?(zipcode)
      city = City.all.detect {|city| city.zipcode == zipcode}
      puts city.humidity
      puts "Tomorrow, the weather will be #{city.weather_tomorrow}."
-     #scrape more data to return here!!!
+     return_to_menu(zipcode)
    end
+
+
 
   def return_to_menu(zipcode)
     city = find_by_zipcode(zipcode)
-    binding.pry
     puts "What would you like to know about #{city.name}? Type a number from 1-3."
     puts "1. See current weather."
     puts "2. See celestial data."
     puts "3. Exit the program."
 
   end
+
 
  def find_by_zipcode(zipcode)
    City.all.find {|city| city.zipcode == zipcode}
