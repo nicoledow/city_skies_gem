@@ -36,9 +36,13 @@ class Scraper
 
   def self.scrape_sun_and_moon(zipcode)
     zipcode = zipcode.to_s
+
     sun_data = Nokogiri::HTML(open("https://www.timeanddate.com/sun/@z-us-#{zipcode}"))
+    moon_data = Nokogiri::HTML(open("https://www.timeanddate.com/moon/phases/@z-us-#{zipcode}"))
+
     daylight = sun_data.css("#bk-focus .fixed #qlook p.dn-mob").text.gsub("pm1", "pm: 1")
     binding.pry
+    moon_phase = 
 
     sun_and_moon_hash = {daylight: daylight}
 
