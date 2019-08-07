@@ -1,8 +1,3 @@
-require_relative "./Scraper.rb"
-require 'pry'
-require 'nokogiri'
-require 'open-uri'
-
 class City
   attr_accessor :zipcode, :name, :current_temp, :weather_description, :weather_tomorrow, :humidity, :Mercury, :Venus, :Mars, :Jupiter, :Saturn, :Uranus, :Neptune, :daylight, :moon_brightness, :moon_phase, :planet_visibility
 
