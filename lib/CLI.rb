@@ -87,6 +87,13 @@ class CLI
 
      case response
      when "1"
+       puts city.daylight
+     when "2"
+       puts "Today, the moon's illumination is at #{moon_brightness}."
+       puts "The moon's current phase is: #{city.moon_phase}."
+     when "3"
+       city.planet_visibility.each {|planet, visibility| puts "#{planet}: #{visibility}"}
+     end
    end
 
    def find_by_zipcode(zipcode)
