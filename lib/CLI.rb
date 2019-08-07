@@ -70,7 +70,7 @@ class CLI
 
 
    def see_more?(zipcode)
-     city = City.all.detect {|city| city.zipcode == zipcode}
+     city = find_by_zipcode(zipcode)
      puts city.humidity
      puts "Tomorrow, the weather will be #{city.weather_tomorrow}."
      sleep(3)
