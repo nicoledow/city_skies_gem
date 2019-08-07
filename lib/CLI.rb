@@ -40,7 +40,7 @@ class CLI
     when 1
       puts new_city.current_temp
       puts new_city.weather_description
-      sleep(4)
+      sleep(3)
       puts "Would you like to see more weather information? Enter a command:"
       puts "Type 'y' to see more weather information."
       puts "Type 'menu' to return to a list of options."
@@ -74,19 +74,10 @@ class CLI
      city = City.all.detect {|city| city.zipcode == zipcode}
      puts city.humidity
      puts "Tomorrow, the weather will be #{city.weather_tomorrow}."
-     return_to_menu(zipcode)
+     sleep(3)
+     run(zipcode)
    end
 
-
-
-  def return_to_menu(zipcode)
-    city = find_by_zipcode(zipcode)
-    puts "What would you like to know about #{city.name}? Type a number from 1-3."
-    puts "1. See current weather."
-    puts "2. See celestial data."
-    puts "3. Exit the program."
-
-  end
 
 
  def find_by_zipcode(zipcode)
