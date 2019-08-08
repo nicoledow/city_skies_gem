@@ -27,11 +27,9 @@ Option 1 returns a menu that will let you see the current temperature, current h
 Option 2 returns a new menu that will let you choose to see today's daylight hours, today's moon illumination and moon phase, and tonight's visible planets.
 
 
-## Development
+## Prerequisites
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+CitySkies requires the Nokogiri and Open-URI gems for scraping data from timeanddate.com.
 
 ## Contributing
 
