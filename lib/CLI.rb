@@ -20,11 +20,11 @@ class CLI
       puts "Please enter a valid zipcode."
       zipcode = gets.strip.to_s
     end
-
-    city_weather = Scraper.scrape_weather(zipcode)
-    city_astronomical_data = Scraper.scrape_astronomy(zipcode)
-    city_sun_moon_data = Scraper.scrape_sun_and_moon(zipcode)
-    new_city = City.new(city_weather, city_astronomical_data, city_sun_moon_data)
+      City.find_or_create_by_zipcode(zipcode)
+#    city_weather = Scraper.scrape_weather(zipcode)
+#    city_astronomical_data = Scraper.scrape_astronomy(zipcode)
+#    city_sun_moon_data = Scraper.scrape_sun_and_moon(zipcode)
+#    new_city = City.new(city_weather, city_astronomical_data, city_sun_moon_data)
     run(zipcode)
   end
 
@@ -48,25 +48,31 @@ class CLI
       puts "Type 'menu' to return to a list of options."
       puts "Type 'new' to check information on a new city."
       puts "Type 'exit' to exit the program."
-      input = gets.strip.to_s.downcase
-        if input == 'y'
-          see_more?(zipcode)
-        elsif input == 'menu'
-          run(zipcode)
-        elsif input == 'new'
-          start
-        elsif input == 'exit'
-          return Goodbye!
-        else
-          puts "Please enter a valid command."
-        end
+      input = chunk_of_code(zipcode)
     when 2
       see_celestial_data(new_city)
     when 3
-      return Goodbye!
+      puts "Goodbye!"
+      exit
     else
       puts "Please enter a valid command."
     end
+   end
+
+   def chunk_of_code(zipcode)
+     input = gets.strip.to_s.downcase
+     if input == 'y'
+       see_more?(zipcode)
+     elsif input == 'menu'
+       run(zipcode)
+     elsif input == 'new'
+       start
+     elsif input == 'exit'
+       return Goodbye!
+     else
+       puts "Please enter a valid command."
+     end
+     input
    end
 
 
