@@ -23,4 +23,19 @@ class City
     @@all
   end
 
+  def self.find_by_zipcode(zipcode)
+    self.all.detect {|city| city.zipcode == zipcode}
+  end
+
+  def self.find_or_create_by_zipcode(zipcode)
+    if self.find_by_zipcode(zipcode)
+      self.find_by_zipcode(zipcode)
+    else
+      weather = Scraper.scrape_weather(zipcode)
+      astronomy = Scraper.scrape_astronomy(zipcode)
+      sun_and_moon = Scraper.scrape_sun_and_moon(zipcode)
+      self.new(weather, astronomy, sun_and_moon)
+    end
+  end
+
 end
