@@ -18,7 +18,7 @@ class Scraper
       humidity: weather_info.css("#qfacts p")[5].text
     }
   end
-  
+
 
 #gets and returns a hash with planets as keys, describing their visibility tonight
   def self.scrape_astronomy(zipcode)
@@ -26,7 +26,6 @@ class Scraper
     astronomy_info = Nokogiri::HTML(open("https://www.timeanddate.com/astronomy/night/@z-us-#{zipcode}"))
 
     descriptions = []
-
     astronomy_info.css("p.rise_graph-desc").each {|description| descriptions << description.text}
 
     planet_visibility = {
