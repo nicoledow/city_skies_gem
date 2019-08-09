@@ -90,29 +90,72 @@ class CLI
    end
 
    def see_celestial_data(city)
-     puts "What celestial data would you like to see? Enter 1-3 or 'exit.'"
+     puts "What celestial data would you like to see? Enter 1-5."
      puts "1. Today's daylight hours"
      puts "2. Today's moon brightness and moon phase"
      puts "3. Today's planet visibility"
-     response = gets.strip.to_s.downcase
+     puts "4. Return to main menu"
+     puts "5. Learn about a new city"
+     puts "6. Exit the program"
+      response = gets.strip.to_i
 
-     case response
-     when "1"
-       puts city.daylight
-       sleep(3)
-       run(city.zipcode)
-     when "2"
-       puts "Today, the moon's illumination is at #{city.moon_brightness}."
-       puts "The moon's current phase is: #{city.moon_phase}."
-       sleep(3)
-       run(city.zipcode)
-     when "3"
-       city.planet_visibility.each {|planet, visibility| puts "#{planet}: #{visibility}" unless visibility == nil}
-       run(city.zipcode)
-     when "exit"
-       return Goodbye!
-     end
+    case response
+    when 1
+      puts city.daylight
+      return_to_celestial_menu(city)
+    when 2
+      see_moon_data(city)
+      sleep(2)
+      return_to_celestial_menu(city)
+    when 3
+      show_planet_visibility(city)
+      return_to_celestial_menu(city)
+    when 4
+      run(city.zipcode)
+    when 5
+      self.start
+    when 6
+      puts "Goodbye!"
+      exit
+    else
+      puts "Please enter a valid command."
+    end
+
    end
+
+   def return_to_celestial_menu(city)
+     see_celestial_data(city)
+   end
+
+   def show_planet_visibility(city)
+    city.planet_visibility.each {|planet, visibility| puts "#{planet}: #{visibility}" unless visibility == nil}
+   end
+
+
+  #  def see_celestial_data(city)
+  #    puts "What celestial data would you like to see? Enter 1-3 or 'exit.'"
+  #    puts "1. Today's daylight hours"
+  #    puts "2. Today's moon brightness and moon phase"
+  #    puts "3. Today's planet visibility"
+  #    response = gets.strip.to_s.downcase
+   #
+  #    case response
+  #    when "1"
+  #      puts city.daylight
+  #      sleep(3)
+  #      run(city.zipcode)
+  #    when "2"
+  #      puts "Today, the moon's illumination is at #{city.moon_brightness}."
+  #      puts "The moon's current phase is: #{city.moon_phase}."
+  #      sleep(3)
+  #      run(city.zipcode)
+  #    when "3"
+  #      city.planet_visibility.each {|planet, visibility| puts "#{planet}: #{visibility}" unless visibility == nil}
+  #      run(city.zipcode)
+  #    when "exit"
+  #      return Goodbye!
+  #    end
+  #  end
 
 
 end
