@@ -34,7 +34,7 @@ class CLI
   end
 
   def run(zipcode)
-    new_city = find_or_create_by_zipcode(zipcode)
+    new_city = City.find_or_create_by_zipcode(zipcode)
     puts "What would you like to know about #{new_city.name}? Type a number from 1-3."
     puts "1. See current weather."
     puts "2. See celestial data."
@@ -109,20 +109,20 @@ class CLI
      end
    end
 
-   def find_by_zipcode(zipcode)
-     City.all.find {|city| city.zipcode == zipcode}
-   end
-
-   def find_or_create_by_zipcode(zipcode)
-     if find_by_zipcode(zipcode)
-       find_by_zipcode(zipcode)
-     else
-       weather = Scraper.scrape_weather(zipcode)
-       astronomy = Scraper.scrape_astronomy(zipcode)
-       sun_and_moon = Scraper.scrape_sun_and_moon(zipcode)
-       City.new(weather, astronomy, sun_and_moon)
-     end
-   end
+  #  def find_by_zipcode(zipcode)
+  #    City.all.find {|city| city.zipcode == zipcode}
+  #  end
+   #
+  #  def find_or_create_by_zipcode(zipcode)
+  #    if find_by_zipcode(zipcode)
+  #      find_by_zipcode(zipcode)
+  #    else
+  #      weather = Scraper.scrape_weather(zipcode)
+  #      astronomy = Scraper.scrape_astronomy(zipcode)
+  #      sun_and_moon = Scraper.scrape_sun_and_moon(zipcode)
+  #      City.new(weather, astronomy, sun_and_moon)
+  #    end
+  #  end
 
 
 end
