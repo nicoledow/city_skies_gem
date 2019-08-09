@@ -24,12 +24,20 @@ class Scraper
     astronomy_info = Nokogiri::HTML(open("https://www.timeanddate.com/astronomy/night/@z-us-#{zipcode}"))
 
     descriptions = []
-    astronomy_info.css("p.rise_graph-desc").each do |description|
-      descriptions << description.text
-    end
+    # astronomy_info.css("p.rise_graph-desc").each do |description|
+    #   descriptions << description.text
+    # end
+    astronomy_info.css("p.rise_graph-desc").each {|description| descriptions << description.text}
 
-    planet_visibility = {Mercury: descriptions[0], Venus: descriptions[1], Mars: descriptions[2], Jupiter: descriptions[3], Saturn: descriptions[4], Uranus: descriptions[5], Neptune: descriptions[6]}
-
+    planet_visibility = {
+      Mercury: descriptions[0],
+      Venus: descriptions[1],
+      Mars: descriptions[2],
+      Jupiter: descriptions[3],
+      Saturn: descriptions[4],
+      Uranus: descriptions[5],
+      Neptune: descriptions[6]
+    }
   end
 
   def self.scrape_sun_and_moon(zipcode)
@@ -38,13 +46,13 @@ class Scraper
     sun_data = Nokogiri::HTML(open("https://www.timeanddate.com/sun/@z-us-#{zipcode}"))
     moon_data = Nokogiri::HTML(open("https://www.timeanddate.com/moon/@z-us-#{zipcode}"))
 
-    daylight = sun_data.css("#bk-focus .fixed #qlook p.dn-mob").text.gsub("pm1", "pm: 1")
-    moon_brightness = moon_data.css("#cur-moon-percent").text
-    moon_phase = moon_data.css("#qlook p").text
-
     sun_and_moon_hash = {daylight: daylight, moon_brightness: moon_brightness, moon_phase: moon_phase}
-
+    sun_and_moon_hash = {
+      daylight: sun_data.css("#bk-focus .fixed #qlook p.dn-mob").text.gsub("pm1", "pm: 1"),
+      moon_brightness: moon_data.css("#cur-moon-percent").text,
+      moon_phase: moon_data.css("#qlook p").text
+    }
   end
 
 end
-Scraper.scrape_weather("08901")
+#Scraper.scrape_astronomy("03221")
