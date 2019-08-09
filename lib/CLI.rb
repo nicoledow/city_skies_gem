@@ -50,8 +50,6 @@ class CLI
       else
         puts "Please enter a valid command."
       end
-
-
   end
 
   # def run(zipcode)
@@ -94,6 +92,30 @@ class CLI
   #     puts "Please enter a valid command."
   #   end
   #  end
+
+  def see_weather(zipcode)
+    city = City.find_or_create_by_zipcode(zipcode)
+    puts city.current_temp
+        puts city.weather_description
+        sleep(2)
+        puts "Would you like to see more weather information? Enter a command:"
+        puts "Type 'y' to see more weather information."
+        puts "Type 'menu' to return to a list of options."
+        puts "Type 'new' to check information on a new city."
+        puts "Type 'exit' to exit the program."
+        input = gets.strip.to_s.downcase
+          if input == 'y'
+            see_more?(zipcode)
+          elsif input == 'menu'
+            run(zipcode)
+          elsif input == 'new'
+            start
+          elsif input == 'exit'
+            return Goodbye!
+          else
+            puts "Please enter a valid command."
+          end
+  end
 
 
 
