@@ -1,4 +1,5 @@
 require 'pry'
+require 'open-uri'
 require_relative './Scraper.rb'
 require_relative './City.rb'
 
@@ -16,18 +17,21 @@ class CLI
     puts "Please enter a 5-digit U.S. zip code to see information on that city."
     zipcode = gets.strip.to_s
 
-    if zipcode.length != 5
-      puts "Please enter a valid zipcode."
-      zipcode = gets.strip.to_s
+    if validate_zipcode(zipcode) == true
+      city_weather = Scraper.scrape_weather(zipcode)
+      city_astronomical_data = Scraper.scrape_astronomy(zipcode)
+      city_sun_moon_data = Scraper.scrape_sun_and_moon(zipcode)
+      new_city = City.new(city_weather, city_astronomical_data, city_sun_moon_data)
+    else
+      puts "Zipcode invalid. Please enter a valid zipcode."
+      get_zipcode
     end
-
-    city_weather = Scraper.scrape_weather(zipcode)
-    city_astronomical_data = Scraper.scrape_astronomy(zipcode)
-    city_sun_moon_data = Scraper.scrape_sun_and_moon(zipcode)
-    new_city = City.new(city_weather, city_astronomical_data, city_sun_moon_data)
     run(zipcode)
   end
 
+  def validate_zipcode(zipcode)
+    zipcode =~ /^[0-9]{5}/ && zipcode.length == 5 ? true : false
+  end
 
   def run(zipcode)
     new_city = find_by_zipcode(zipcode)
@@ -63,7 +67,8 @@ class CLI
     when 2
       see_celestial_data(new_city)
     when 3
-      return Goodbye!
+      puts "Goodbye!"
+      exit
     else
       puts "Please enter a valid command."
     end
