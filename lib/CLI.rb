@@ -1,12 +1,13 @@
 require 'pry'
 require 'open-uri'
+require 'colorize'
 require_relative './Scraper.rb'
 require_relative './City.rb'
 
 class CLI
 
   def start
-    puts "Hi! Welcome to the CitySkies gem."
+    puts "Hi! Welcome to the CitySkies gem.".bold.colorize(:light_blue)
     get_zipcode
   end
 
@@ -19,6 +20,7 @@ class CLI
       run(zipcode)
     end
   end
+
 
   def validate_zipcode(zipcode)
     open ("https://www.timeanddate.com/weather/@z-us-#{zipcode}")
@@ -60,6 +62,7 @@ class CLI
         second_weather_menu(zipcode)
   end
 
+
   def second_weather_menu(zipcode)
     puts "Would you like to see more weather information? Enter a command:"
     puts "Type 'y' to see more weather information."
@@ -89,6 +92,7 @@ class CLI
      sleep(3)
      run(zipcode)
    end
+
 
    def see_celestial_data(city)
      puts "What celestial data would you like to see? Enter 1-5."
@@ -126,19 +130,20 @@ class CLI
 
    end
 
+
    def return_to_celestial_menu(city)
      see_celestial_data(city)
    end
+
 
    def show_planet_visibility(city)
     city.planet_visibility.each {|planet, visibility| puts "#{planet}: #{visibility}" unless visibility == nil}
    end
 
+
    def see_moon_data(city)
      puts "Today, the moon's illumination is at #{city.moon_brightness}."
      puts "The moon's current phase is: #{city.moon_phase}."
    end
-
-
 
 end
