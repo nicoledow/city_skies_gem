@@ -23,9 +23,6 @@ class City
     @@all
   end
 
-  def self.find_by_zipcode(zipcode)
-    self.all.find {|city| city.zipcode == zipcode}
-  end
 
   def self.find_or_create_by_zipcode(zipcode)
     if self.find_by_zipcode(zipcode)
