@@ -17,14 +17,11 @@ class CLI
     puts "Please enter a 5-digit U.S. zip code to see information on that city."
     zipcode = gets.strip.to_s
 
-    if validate_zipcode(zipcode) == true
+    if validate_zipcode(zipcode)
       city_weather = Scraper.scrape_weather(zipcode)
       city_astronomical_data = Scraper.scrape_astronomy(zipcode)
       city_sun_moon_data = Scraper.scrape_sun_and_moon(zipcode)
       new_city = City.new(city_weather, city_astronomical_data, city_sun_moon_data)
-    else
-      puts "Zipcode invalid. Please enter a valid zipcode."
-      get_zipcode
     end
     run(zipcode)
   end
