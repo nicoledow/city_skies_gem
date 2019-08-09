@@ -3,6 +3,3 @@ To do:
 -flesh out City objects?
 -Delete individual requirements on files and make sure environment is properly set up
   *CLI isn't loading Scraper.rb ?
-
--Make a find_or_create_by_zipcode method
-*look through code and see if I need find_by_zipcode or can delete it
