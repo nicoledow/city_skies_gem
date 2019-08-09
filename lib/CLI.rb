@@ -7,7 +7,7 @@ require_relative './City.rb'
 class CLI
 
   def start
-    puts "Hi! Welcome to the CitySkies gem.".bold.colorize(:light_blue)
+    puts "Hi! Welcome to the CitySkies gem."
     get_zipcode
   end
 
@@ -25,7 +25,7 @@ class CLI
   def validate_zipcode(zipcode)
     open ("https://www.timeanddate.com/weather/@z-us-#{zipcode}")
   rescue OpenURI::HTTPError
-    puts "Zipcode not valid."
+    puts "Zipcode not valid.".bold.colorize(:red)
     get_zipcode
   else
     true
@@ -47,19 +47,19 @@ class CLI
       when 2
         see_celestial_data(city)
       when 3
-        puts "Goodbye!"
+        puts "Goodbye!".bold.colorize(:green)
         exit
       else
-        puts "Please enter a valid command."
+        puts "Please enter a valid command.".bold.colorize(:red)
       end
   end
 
 
   def see_weather(zipcode)
     city = City.find_or_create_by_zipcode(zipcode)
-    puts city.current_temp
-        puts city.weather_description
-        second_weather_menu(zipcode)
+    puts city.current_temp.bold.colorize(:light_blue)
+    puts city.weather_description.bold.colorize(:light_blue)
+    second_weather_menu(zipcode)
   end
 
 
@@ -77,18 +77,18 @@ class CLI
       elsif input == 'new'
         start
       elsif input == 'exit'
-        puts "Goodbye!"
+        puts "Goodbye!".bold.colorize(:green)
         exit
       else
-        puts "Please enter a valid command."
+        puts "Please enter a valid command.".bold.colorize(:red)
       end
   end
 
 
    def see_more?(zipcode)
      city = City.find_or_create_by_zipcode(zipcode)
-     puts city.humidity
-     puts "Tomorrow, the weather will be #{city.weather_tomorrow}."
+     puts city.humidity.bold.colorize(:light_blue)
+     puts "Tomorrow, the weather will be #{city.weather_tomorrow}.".bold.colorize(:light_blue)
      sleep(3)
      run(zipcode)
    end
@@ -106,7 +106,7 @@ class CLI
 
     case response
     when 1
-      puts city.daylight
+      puts city.daylight.bold.colorize(:light_blue)
       sleep(3)
       return_to_celestial_menu(city)
     when 2
@@ -122,10 +122,10 @@ class CLI
     when 5
       self.start
     when 6
-      puts "Goodbye!"
+      puts "Goodbye!".bold.colorize(:green)
       exit
     else
-      puts "Please enter a valid command."
+      puts "Please enter a valid command.".bold.colorize(:red)
     end
 
    end
@@ -137,13 +137,13 @@ class CLI
 
 
    def show_planet_visibility(city)
-    city.planet_visibility.each {|planet, visibility| puts "#{planet}: #{visibility}" unless visibility == nil}
+    city.planet_visibility.each {|planet, visibility| puts "#{planet}: #{visibility}".bold.colorize(:light_blue) unless visibility == nil}
    end
 
 
    def see_moon_data(city)
-     puts "Today, the moon's illumination is at #{city.moon_brightness}."
-     puts "The moon's current phase is: #{city.moon_phase}."
+     puts "Today, the moon's illumination is at #{city.moon_brightness}.".bold.colorize(:light_blue)
+     puts "The moon's current phase is: #{city.moon_phase}.".bold.colorize(:light_blue)
    end
 
 end
