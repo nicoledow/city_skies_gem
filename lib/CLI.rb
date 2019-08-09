@@ -126,7 +126,7 @@ class CLI
 
 
    def see_more?(zipcode)
-     city = find_or_create_by_zipcode(zipcode)
+     city = City.find_or_create_by_zipcode(zipcode)
      puts city.humidity
      puts "Tomorrow, the weather will be #{city.weather_tomorrow}."
      sleep(2)
@@ -160,4 +160,3 @@ class CLI
 
 
 end
-#City.find_or_create_by_zipcode("03221")
