@@ -9,16 +9,13 @@ class Scraper
     zipcode = zipcode.to_s
     weather_info = Nokogiri::HTML(open("https://www.timeanddate.com/weather/@z-us-#{zipcode}"))
 
-    name = weather_info.css("head title").text.split(" ")[2..-1].join(" ")
-    binding.pry
-    current_temp = weather_info.css("#bk-focus .fixed #qlook .h2").text
-    weather_description = weather_info.css("#bk-focus .fixed #qlook p").first.text
-    #binding.pry
-    weather_tomorrow = weather_info.css("#wt-48 tbody .c1 td")[3].text
-    humidity = weather_info.css("#qfacts p")[5].text
-
-    city_hash = {name: name, zipcode: zipcode, current_temp: current_temp, weather_description: weather_description, weather_tomorrow: weather_tomorrow, humidity: humidity}
-    city_hash
+    city_hash = {
+      name: weather_info.css("head title").text.split(" ")[2..-1].join(" "),
+      current_temp: weather_info.css("#bk-focus .fixed #qlook .h2").text,
+      weather_description: weather_info.css("#bk-focus .fixed #qlook p").first.text,
+      weather_tomorrow: weather_info.css("#wt-48 tbody .c1 td")[3].text,
+      humidity: weather_info.css("#qfacts p")[5].text
+    }
   end
 
 #gets and returns a hash with planets as keys, describing their visibility tonight
@@ -50,4 +47,4 @@ class Scraper
   end
 
 end
-Scraper.scrape_weather("03257")
+Scraper.scrape_weather("08901")
