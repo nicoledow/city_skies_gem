@@ -30,7 +30,12 @@ class CLI
   end
 
   def validate_zipcode(zipcode)
-    zipcode =~ /^[0-9]{5}/ && zipcode.length == 5 ? true : false
+    open ("https://www.timeanddate.com/weather/@z-us-#{zipcode}")
+  rescue OpenURI::HTTPError
+    puts "Zipcode not valid."
+    get_zipcode
+  else
+    true
   end
 
   def run(zipcode)
