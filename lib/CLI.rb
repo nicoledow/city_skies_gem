@@ -42,7 +42,7 @@ class CLI
     when 1
       puts new_city.current_temp
       puts new_city.weather_description
-      sleep(3)
+      sleep(2)
       puts "Would you like to see more weather information? Enter a command:"
       puts "Type 'y' to see more weather information."
       puts "Type 'menu' to return to a list of options."
@@ -75,7 +75,7 @@ class CLI
      city = find_by_zipcode(zipcode)
      puts city.humidity
      puts "Tomorrow, the weather will be #{city.weather_tomorrow}."
-     sleep(3)
+     sleep(2)
      run(zipcode)
    end
 
@@ -89,12 +89,12 @@ class CLI
      case response
      when "1"
        puts city.daylight
-       sleep(5)
+       sleep(3)
        run(city.zipcode)
      when "2"
        puts "Today, the moon's illumination is at #{city.moon_brightness}."
        puts "The moon's current phase is: #{city.moon_phase}."
-       sleep(5)
+       sleep(3)
        run(city.zipcode)
      when "3"
        city.planet_visibility.each {|planet, visibility| puts "#{planet}: #{visibility}"}
