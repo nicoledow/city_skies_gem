@@ -6,7 +6,6 @@ require_relative './City.rb'
 #doesn't work when Scraper file isn't required - issue with file requirements?
 
 class CLI
-  puts "Hello world"
 
   def start
     puts "Hi! Welcome to the CitySkies gem."
