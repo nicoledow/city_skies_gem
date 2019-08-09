@@ -74,7 +74,8 @@ class CLI
       elsif input == 'new'
         start
       elsif input == 'exit'
-        return Goodbye!
+        puts "Goodbye!"
+        exit
       else
         puts "Please enter a valid command."
       end
