@@ -86,7 +86,7 @@ class CLI
      city = City.find_or_create_by_zipcode(zipcode)
      puts city.humidity
      puts "Tomorrow, the weather will be #{city.weather_tomorrow}."
-     sleep(2)
+     sleep(3)
      run(zipcode)
    end
 
@@ -103,13 +103,15 @@ class CLI
     case response
     when 1
       puts city.daylight
+      sleep(3)
       return_to_celestial_menu(city)
     when 2
       see_moon_data(city)
-      sleep(2)
+      sleep(3)
       return_to_celestial_menu(city)
     when 3
       show_planet_visibility(city)
+      sleep(3)
       return_to_celestial_menu(city)
     when 4
       run(city.zipcode)
