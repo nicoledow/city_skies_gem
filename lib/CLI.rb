@@ -18,10 +18,11 @@ class CLI
     zipcode = gets.strip.to_s
 
     if validate_zipcode(zipcode)
-      city_weather = Scraper.scrape_weather(zipcode)
-      city_astronomical_data = Scraper.scrape_astronomy(zipcode)
-      city_sun_moon_data = Scraper.scrape_sun_and_moon(zipcode)
-      new_city = City.new(city_weather, city_astronomical_data, city_sun_moon_data)
+      City.find_or_create_by_zipcode(zipcode)
+      # city_weather = Scraper.scrape_weather(zipcode)
+      # city_astronomical_data = Scraper.scrape_astronomy(zipcode)
+      # city_sun_moon_data = Scraper.scrape_sun_and_moon(zipcode)
+      # new_city = City.new(city_weather, city_astronomical_data, city_sun_moon_data)
     end
     run(zipcode)
   end
@@ -36,8 +37,8 @@ class CLI
   end
 
   def run(zipcode)
-    new_city = find_or_create_by_zipcode(zipcode)
-    puts "What would you like to know about #{new_city.name}? Type a number from 1-3."
+    city = City.find_or_create_by_zipcode(zipcode)
+    puts "What would you like to know about #{city.name}? Type a number from 1-3."
     puts "1. See current weather."
     puts "2. See celestial data."
     puts "3. Exit the program."
@@ -46,35 +47,81 @@ class CLI
 
     case response
     when 1
-      puts new_city.current_temp
-      puts new_city.weather_description
-      sleep(2)
-      puts "Would you like to see more weather information? Enter a command:"
-      puts "Type 'y' to see more weather information."
-      puts "Type 'menu' to return to a list of options."
-      puts "Type 'new' to check information on a new city."
-      puts "Type 'exit' to exit the program."
-      input = gets.strip.to_s.downcase
-        if input == 'y'
-          see_more?(zipcode)
-        elsif input == 'menu'
-          run(zipcode)
-        elsif input == 'new'
-          start
-        elsif input == 'exit'
-          return Goodbye!
-        else
-          puts "Please enter a valid command."
-        end
+      see_weather(zipcode)
     when 2
-      see_celestial_data(new_city)
+      see_celestial_data(city)
     when 3
       puts "Goodbye!"
       exit
     else
       puts "Please enter a valid command."
     end
-   end
+  end
+
+  def see_weather(zipcode)
+    city = City.find_or_create_by_zipcode
+    puts city.current_temp
+        puts city.weather_description
+        sleep(2)
+        puts "Would you like to see more weather information? Enter a command:"
+        puts "Type 'y' to see more weather information."
+        puts "Type 'menu' to return to a list of options."
+        puts "Type 'new' to check information on a new city."
+        puts "Type 'exit' to exit the program."
+        input = gets.strip.to_s.downcase
+          if input == 'y'
+            see_more?(zipcode)
+          elsif input == 'menu'
+            run(zipcode)
+          elsif input == 'new'
+            start
+          elsif input == 'exit'
+            return Goodbye!
+          else
+            puts "Please enter a valid command."
+          end
+  end
+
+  # def run(zipcode)
+  #   new_city = find_or_create_by_zipcode(zipcode)
+  #   puts "What would you like to know about #{new_city.name}? Type a number from 1-3."
+  #   puts "1. See current weather."
+  #   puts "2. See celestial data."
+  #   puts "3. Exit the program."
+  #
+  #   response = gets.to_i
+  #
+  #   case response
+  #   when 1
+  #     puts new_city.current_temp
+  #     puts new_city.weather_description
+  #     sleep(2)
+  #     puts "Would you like to see more weather information? Enter a command:"
+  #     puts "Type 'y' to see more weather information."
+  #     puts "Type 'menu' to return to a list of options."
+  #     puts "Type 'new' to check information on a new city."
+  #     puts "Type 'exit' to exit the program."
+    #   input = gets.strip.to_s.downcase
+    #     if input == 'y'
+    #       see_more?(zipcode)
+    #     elsif input == 'menu'
+    #       run(zipcode)
+    #     elsif input == 'new'
+    #       start
+    #     elsif input == 'exit'
+    #       return Goodbye!
+    #     else
+    #       puts "Please enter a valid command."
+    #     end
+    # when 2
+    #   see_celestial_data(new_city)
+    # when 3
+    #   puts "Goodbye!"
+      exit
+  #   else
+  #     puts "Please enter a valid command."
+  #   end
+  #  end
 
 
 
@@ -108,21 +155,6 @@ class CLI
        run(city.zipcode)
      when "exit"
        return Goodbye!
-     end
-   end
-
-   def find_by_zipcode(zipcode)
-     City.all.find {|city| city.zipcode == zipcode}
-   end
-
-   def find_or_create_by_zipcode(zipcode)
-     if find_by_zipcode(zipcode)
-       find_by_zipcode(zipcode)
-     else
-       weather = Scraper.scrape_weather(zipcode)
-       astronomy = Scraper.scrape_astronomy(zipcode)
-       sun_and_moon = Scraper.scrape_sun_and_moon(zipcode)
-       City.new(weather, astronomy, sun_and_moon)
      end
    end
 
