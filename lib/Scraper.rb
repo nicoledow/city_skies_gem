@@ -1,3 +1,4 @@
+
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
@@ -54,4 +55,3 @@ class Scraper
   end
 
 end
-#Scraper.scrape_astronomy("03221")
