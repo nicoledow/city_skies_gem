@@ -9,7 +9,8 @@ class Scraper
     zipcode = zipcode.to_s
     weather_info = Nokogiri::HTML(open("https://www.timeanddate.com/weather/@z-us-#{zipcode}"))
 
-    name = weather_info.css("head title").text.split(" ")[2].gsub(",", "")
+    name = weather_info.css("head title").text.split(" ")[2..-1].join(" ")
+    binding.pry
     current_temp = weather_info.css("#bk-focus .fixed #qlook .h2").text
     weather_description = weather_info.css("#bk-focus .fixed #qlook p").first.text
     #binding.pry
@@ -49,3 +50,4 @@ class Scraper
   end
 
 end
+Scraper.scrape_weather("03257")
