@@ -16,12 +16,8 @@ class CLI
     zipcode = gets.strip.to_s
 
     if validate_zipcode(zipcode)
-      city_weather = Scraper.scrape_weather(zipcode)
-      city_astronomical_data = Scraper.scrape_astronomy(zipcode)
-      city_sun_moon_data = Scraper.scrape_sun_and_moon(zipcode)
-      new_city = City.new(city_weather, city_astronomical_data, city_sun_moon_data)
+      run(zipcode)
     end
-    run(zipcode)
   end
 
   def validate_zipcode(zipcode)
@@ -108,21 +104,6 @@ class CLI
        return Goodbye!
      end
    end
-
-  #  def find_by_zipcode(zipcode)
-  #    City.all.find {|city| city.zipcode == zipcode}
-  #  end
-   #
-  #  def find_or_create_by_zipcode(zipcode)
-  #    if find_by_zipcode(zipcode)
-  #      find_by_zipcode(zipcode)
-  #    else
-  #      weather = Scraper.scrape_weather(zipcode)
-  #      astronomy = Scraper.scrape_astronomy(zipcode)
-  #      sun_and_moon = Scraper.scrape_sun_and_moon(zipcode)
-  #      City.new(weather, astronomy, sun_and_moon)
-  #    end
-  #  end
 
 
 end
