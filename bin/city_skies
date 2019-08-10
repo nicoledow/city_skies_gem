@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative "./config/environment"
+#require_relative "./config/environment"
 require_relative "../lib/city_skies.rb"
+require_relative "../lib/Scraper.rb"
+require_relative "../lib/City.rb"
+require_relative "../lib/CLI.rb"
+
+CLI.new.start
