@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   # spec.metadata["homepage_uri"] = spec.homepage
+  #uses github repo as gem website
    spec.metadata["source_code_uri"] = "https://github.com/nicoledow/city_skies_gem"
   # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
