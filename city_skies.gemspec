@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   # spec.metadata["homepage_uri"] = spec.homepage
-  # spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
+   spec.metadata["source_code_uri"] = "https://github.com/nicoledow/city_skies_gem"
   # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
   # Specify which files should be added to the gem when it is released.
@@ -33,7 +33,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   #spec.add_development_dependency "colorize", "~> 0.8.1"
 
-#need open-uri dependency???
   spec.add_dependency "nokogiri"
   spec.add_dependency "open-uri"
   spec.add_dependency "colorize", "~>0.8.1"
