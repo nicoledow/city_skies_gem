@@ -81,6 +81,7 @@ class CLI
         exit
       else
         puts "Please enter a valid command.".bold.colorize(:red)
+        second_weather_menu(zipcode)
       end
   end
 
