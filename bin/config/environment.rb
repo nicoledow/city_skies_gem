@@ -1,4 +1,4 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
-require 'colorize'
+# require 'nokogiri'
+# require 'open-uri'
+# require 'pry'
+# require 'colorize'
